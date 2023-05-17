@@ -1,13 +1,9 @@
-import {useSelector, useDispatch} from 'react-redux'
-import './App.css'
-import { addTodo } from './redux/slice'
+import Login from './pages/Login'
 
 function App() {
-  const {todo} = useSelector((state:any)=>state)
-  const dispatch = useDispatch()
   return (
     <>
-      
+      <Login/>
     </>
   )
 }
