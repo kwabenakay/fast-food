@@ -1,6 +1,6 @@
 export default function Login() {
   return (
-    <div className=" max-w-[1440px] mx-auto flex flex-col gap-4 items-center">
+    <div className=" flex flex-col gap-4 items-center">
       <div>
         <img src="/foodlogo.svg" alt="logo" />
       </div>
