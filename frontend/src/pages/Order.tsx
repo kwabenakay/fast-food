@@ -2,10 +2,10 @@ import SelectedOrders from "../components/SelectedOrders";
 
 export default function Order() {
   return (
-    <div className=" bg-[#FBF3EF]">
+    <div className=" bg-[#FBF3EF] pb-5">
       {/* left side */}
-      <div className=" border border-black">
-        <img src="/foodlogo.svg" alt="logo" className=" border border-black" />
+      <div className=" pt-5 pb-5">
+        <img src="/foodlogo.svg" alt="logo" />
       </div>
       <div className=" grid grid-cols-2 gap-60 px-40">
         <div className=" flex flex-col gap-12">
@@ -43,7 +43,6 @@ export default function Order() {
             </button>
           </div>
           <div>
-            selected items
             <SelectedOrders
               selected={[
                 { name: "Malt", num: 10 },
@@ -62,7 +61,7 @@ export default function Order() {
         </div>
         {/* right side */}
         <div className=" flex flex-col justify-between w-fit">
-          <div className=" bg-white flex flex-col justify-between w-96 min-h-[400px] p-6">
+          <div className=" bg-white flex flex-col justify-between shadow-lg w-96 min-h-[400px] p-6">
             <div className=" flex flex-col gap-4">
               <h1 className=" font-bold text-3xl text-center">ticket id</h1>
               <h2 className=" text-xl">Customer name</h2>
