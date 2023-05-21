@@ -1,6 +1,8 @@
 import SelectedOrders from "../components/SelectedOrders";
+import { useState } from "react";
 
 export default function Order() {
+  const [search, setSearch] = useState("");
   return (
     <div className=" bg-[#FBF3EF] pb-5">
       {/* left side */}
@@ -23,13 +25,33 @@ export default function Order() {
               className=" w-96 h-14 outline-none bg-transparent"
             />
           </div>
-          <select
-            name="item"
-            id=""
-            className=" w-96 h-14 outline-none rounded-lg"
-          >
-            <option value="#">temp</option>
-          </select>
+          <div>
+            <div className=" bg-white shadow-lg rounded-lg px-4">
+              <input
+                type="search"
+                placeholder="Search item"
+                className=" w-96 h-14 outline-none bg-transparent"
+                onChange={(event) => {
+                  setSearch(event.target.value);
+                }}
+              />
+            </div>
+            <div
+              className={
+                (search ? "" : "hidden") +
+                " bg-white shadow-lg rounded-lg px-4 border-black border-t-4 mt-2"
+              }
+            >
+              <ul>
+                <li className=" text-center mt-1 hover:border-b-[1px] border-black hover:cursor-pointer">
+                  KOFI
+                </li>
+                <li className=" text-center mt-1 hover:border-b-[1px] border-black hover:cursor-pointer">
+                  YAW
+                </li>
+              </ul>
+            </div>
+          </div>
           <div className=" flex justify-between">
             <div className=" bg-white shadow-lg rounded-lg px-4">
               <input

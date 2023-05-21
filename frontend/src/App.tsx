@@ -3,7 +3,7 @@ import Order from './pages/Order'
 
 function App() {
   return (
-    <div className=' max-w-[1440px] mx-auto'>
+    <div className=' w-[1440px] mx-auto'>
       <Order/>
     </div>
   )
