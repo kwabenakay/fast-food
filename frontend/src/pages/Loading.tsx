@@ -1,6 +1,8 @@
+import { useSelector } from "react-redux";
 import Ticket from "../components/Ticket";
 
 export default function Loading() {
+  const tickets = useSelector((state: any) => state.data.loading);
   return (
     <div className=" bg-[#FBF3EF] pb-5">
       <div className=" pt-5 pb-5">
@@ -9,23 +11,7 @@ export default function Loading() {
       <div className=" grid grid-cols-2 gap-60 px-40">
         <div>
           <h1 className=" text-3xl font-bold mb-5">ORDERS</h1>
-          <Ticket
-            tickets={[
-              { id: 1 },
-              { id: 1 },
-              { id: 1 },
-              { id: 1 },
-              { id: 1 },
-              { id: 1 },
-              { id: 1 },
-              { id: 1 },
-              { id: 1 },
-              { id: 1 },
-              { id: 1 },
-              { id: 1 },
-              { id: 1 },
-            ]}
-          />
+          <Ticket tickets={tickets} />
         </div>
         <div className=" flex flex-col justify-between w-fit">
           <div className=" bg-white flex flex-col justify-between shadow-lg w-96 min-h-[400px] p-6">

@@ -1,8 +1,10 @@
 import SelectedOrders from "../components/SelectedOrders";
 import { useState } from "react";
+import { useSelector,useDispatch } from "react-redux";
 
 export default function Order() {
   const [search, setSearch] = useState("");
+ 
   return (
     <div className=" bg-[#FBF3EF] pb-5">
       {/* left side */}
@@ -65,20 +67,7 @@ export default function Order() {
             </button>
           </div>
           <div>
-            <SelectedOrders
-              selected={[
-                { name: "Malt", num: 10 },
-                { name: "Malt", num: 10 },
-                { name: "Malt", num: 10 },
-                { name: "Malt", num: 10 },
-                { name: "Malt", num: 10 },
-                { name: "Malt", num: 10 },
-                { name: "Malt", num: 10 },
-                { name: "Malt", num: 10 },
-                { name: "Malt", num: 10 },
-                { name: "Malt", num: 10 },
-              ]}
-            />
+            <SelectedOrders/>
           </div>
         </div>
         {/* right side */}

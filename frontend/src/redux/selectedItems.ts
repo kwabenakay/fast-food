@@ -1,12 +1,22 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 type selectedItems = { name: string; num: number }[];
+const selectedItems =  [
+  { name: "Malt", num: 10 },
+  { name: "Malt", num: 10 },
+  { name: "Malt", num: 10 },
+  { name: "Malt", num: 10 },
+  { name: "Malt", num: 10 },
+  { name: "Malt", num: 10 },
+  { name: "Malt", num: 10 },
+  { name: "Malt", num: 10 },
+  { name: "Malt", num: 10 },
+  { name: "Malt", num: 10 },
+] ;
 
-const selectedItems = [null];
-
-const SELECTED_ITEMS = createSlice({
+export const SELECTED_ITEMS = createSlice({
   name: "seletedItems",
-  initialState: { selectedItems },
+  initialState:  selectedItems ,
   reducers: {
     add: () => {},
     remove: () => {},

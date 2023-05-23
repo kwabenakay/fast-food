@@ -1,6 +1,8 @@
+import { useSelector } from "react-redux";
 import Ticket from "../components/Ticket";
 
 export default function Serving() {
+  const tickets = useSelector((state:any)=>state.data.servings)
   return (
     <div className=" bg-[#FBF3EF] pb-5">
       <div className=" pt-5 pb-5">
@@ -10,21 +12,7 @@ export default function Serving() {
         <div>
           <h1 className=" text-3xl font-bold mb-5">SERVINGS</h1>
           <Ticket
-            tickets={[
-              { id: 1 },
-              { id: 1 },
-              { id: 1 },
-              { id: 1 },
-              { id: 1 },
-              { id: 1 },
-              { id: 1 },
-              { id: 1 },
-              { id: 1 },
-              { id: 1 },
-              { id: 1 },
-              { id: 1 },
-              { id: 1 },
-            ]}
+            tickets={tickets}
           />
         </div>
         <div className=" flex flex-col justify-between w-fit">

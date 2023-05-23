@@ -1,13 +1,12 @@
 import CloseIcon from "@mui/icons-material/Close";
-import { useState } from "react";
+import { useSelector } from "react-redux";
 
-export default function SelectedOrders(Prop: {
-  selected: { name: string; num: number }[];
-}) {
-  const [orders, _] = useState(Prop.selected);
+export default function SelectedOrders() {
+  const orders:{ name: string; num: number }[]= useSelector((state:any)=>state.selected)
+  console.log(orders)
   return (
     <div className=" bg-black bg-opacity-10 h-56 rounded-lg overflow-y-auto grid grid-cols-2 gap-2 p-4">
-      {orders.map((order, ind) => (
+      {orders && orders.map((order, ind) => (
         <div
           id={"tag" + ind}
           key={"order" + ind}
