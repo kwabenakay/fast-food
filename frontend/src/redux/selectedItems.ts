@@ -19,11 +19,13 @@ export const SELECTED_ITEMS = createSlice({
   initialState: selectedItems,
   reducers: {
     addSelect: (state, actions) => {
-      selectedItems.push(actions.payload.selected);
+      if (actions.payload) {
+        console.log(actions.payload);
+        state.push(actions.payload);
+      }
       return state;
     },
     removeSelect: (state, actions) => {
-      
       state.splice(actions.payload, 1);
       return state;
     },

@@ -2,13 +2,18 @@ import SelectedOrders from "../components/SelectedOrders";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addLoad } from "../redux/data";
-import { clearSelect } from "../redux/selectedItems";
+import { addSelect, clearSelect } from "../redux/selectedItems";
 
 export default function Order() {
   const [search, setSearch] = useState("");
   const [name, setName] = useState("");
+  const [filterItem, setFilterItem] = useState("");
+  const [numItem, setNumItem] = useState(1);
   const selected: { name: string; num: number; price: number }[] = useSelector(
     (state: any) => state.selected
+  );
+  const stock: { name: string; num: number; price: number }[] = useSelector(
+    (state: any) => state.stock
   );
   const dispatch = useDispatch();
 
@@ -46,10 +51,13 @@ export default function Order() {
           <div>
             <div className=" bg-white shadow-lg rounded-lg px-4">
               <input
+                id="search"
                 type="search"
                 placeholder="Search item"
                 className=" w-96 h-14 outline-none bg-transparent"
+                value={filterItem}
                 onChange={(event) => {
+                  setFilterItem(event.target.value);
                   setSearch(event.target.value);
                 }}
               />
@@ -57,15 +65,26 @@ export default function Order() {
             <div
               className={
                 (search ? "" : "hidden") +
-                " bg-white shadow-lg rounded-lg px-4 border-black border-t-4 mt-2"
+                " bg-white shadow-lg rounded-lg max-h-40 overflow-y-auto px-4 border-black border-t-4 mt-2"
               }
             >
               <ul>
-                
-                <li className=" text-center mt-1 hover:border-b-[1px] border-black hover:cursor-pointer">
-                  KOFI
-                </li>
-                
+                {stock
+                  .filter((val) =>
+                    val.name.toLowerCase().includes(search.toLowerCase())
+                  )
+                  .map((val, ind) => (
+                    <li
+                      key={"stock" + ind}
+                      className=" text-center mt-1 hover:border-b-[1px] border-black hover:cursor-pointer"
+                      onClick={() => {
+                        setFilterItem(val.name);
+                        setSearch("");
+                      }}
+                    >
+                      {val.name}
+                    </li>
+                  ))}
               </ul>
             </div>
           </div>
@@ -75,9 +94,20 @@ export default function Order() {
                 type="number"
                 placeholder="1"
                 className=" w-14 h-14 outline-none bg-transparent"
+                onChange={(event) => {
+                  setNumItem(Number(event.target.value) || 1);
+                }}
               />
             </div>
-            <button className=" bg-[#D6C07C] w-24 h-14 rounded-lg font-bold text-xl hover:bg-[#FFE594]" onClick={()=>{}}>
+            <button
+              className=" bg-[#D6C07C] w-24 h-14 rounded-lg font-bold text-xl hover:bg-[#FFE594]"
+              onClick={() => {
+                let temp = {...stock.filter((val) => val.name === filterItem)[0]};
+                temp.num=numItem
+                console.log(temp);
+                dispatch(addSelect({name:temp.name,num:numItem,price:temp.price}));
+              }}
+            >
               ADD
             </button>
           </div>
@@ -87,7 +117,7 @@ export default function Order() {
         </div>
         {/* right side */}
         <div className=" flex flex-col justify-between w-fit">
-          <div className=" bg-white flex flex-col justify-between shadow-lg w-96 min-h-[400px] p-6">
+          <div className=" bg-white flex flex-col justify-between shadow-lg overflow-y-auto w-96 min-h-[400px] max-h-[500px] p-6">
             <div className=" flex flex-col gap-4">
               <h1 className=" font-bold text-3xl text-center">ticket id</h1>
               <h2 className=" text-xl">Customer name</h2>
