@@ -61,12 +61,11 @@ export default function Order() {
               }
             >
               <ul>
+                
                 <li className=" text-center mt-1 hover:border-b-[1px] border-black hover:cursor-pointer">
                   KOFI
                 </li>
-                <li className=" text-center mt-1 hover:border-b-[1px] border-black hover:cursor-pointer">
-                  YAW
-                </li>
+                
               </ul>
             </div>
           </div>
@@ -78,7 +77,7 @@ export default function Order() {
                 className=" w-14 h-14 outline-none bg-transparent"
               />
             </div>
-            <button className=" bg-[#D6C07C] w-24 h-14 rounded-lg font-bold text-xl hover:bg-[#FFE594]">
+            <button className=" bg-[#D6C07C] w-24 h-14 rounded-lg font-bold text-xl hover:bg-[#FFE594]" onClick={()=>{}}>
               ADD
             </button>
           </div>

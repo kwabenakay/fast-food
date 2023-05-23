@@ -3,6 +3,7 @@ import { todoSlice } from "./slice";
 import { LOGIN } from "./login";
 import { DATA } from "./data";
 import { SELECTED_ITEMS } from "./selectedItems";
+import { STOCK } from "./stock";
 
 export default configureStore({
   reducer: {
@@ -10,5 +11,6 @@ export default configureStore({
     isLogin: LOGIN.reducer,
     data: DATA.reducer,
     selected: SELECTED_ITEMS.reducer,
+    stock: STOCK.reducer,
   },
 });

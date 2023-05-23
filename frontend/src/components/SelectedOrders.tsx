@@ -1,4 +1,4 @@
-import {useEffect} from "react";
+import { useEffect } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import { useDispatch, useSelector } from "react-redux";
 import { removeSelect } from "../redux/selectedItems";
@@ -8,7 +8,7 @@ export default function SelectedOrders() {
     (state: any) => state.selected
   );
   const dispatch = useDispatch();
-  useEffect(()=>{},[orders])
+  useEffect(() => {}, [orders]);
   return (
     <div className=" bg-black bg-opacity-10 h-56 rounded-lg overflow-y-auto grid grid-cols-2 gap-2 p-4">
       {orders &&
@@ -33,7 +33,7 @@ export default function SelectedOrders() {
                 }
               }}
               onClick={() => {
-                console.log(orders.indexOf(order))
+                console.log(orders.indexOf(order));
                 dispatch(removeSelect(orders.indexOf(order)));
                 console.log(order.name);
               }}
