@@ -23,7 +23,11 @@ export const SELECTED_SERVE = createSlice({
       state.index = action.payload.index;
       return state;
     },
+    resetServe: (state) => {
+      state = initialState;
+      return state;
+    },
   },
 });
-export const { setServe } = SELECTED_SERVE.actions;
+export const { setServe, resetServe } = SELECTED_SERVE.actions;
 export default SELECTED_SERVE.reducer;

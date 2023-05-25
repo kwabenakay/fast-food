@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Ticket from "../components/Ticket";
 import { removeServe } from "../redux/data";
 import Navigation from "../components/Navigation";
+import { resetServe } from "../redux/selectedServe";
 type selectedServe = {
   ticket: {
     id: number;
@@ -44,6 +45,7 @@ export default function Serving() {
           <button className=" bg-[#B29740] w-28 h-14 rounded-lg font-bold text-xl self-end hover:bg-[#FDD65C]"
           onClick={()=>{
             dispatch(removeServe(selectedServe.index))
+            dispatch(resetServe())
           }}>
             DELIVERED
           </button>

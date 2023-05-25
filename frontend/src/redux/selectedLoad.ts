@@ -25,6 +25,7 @@ export const SELECTED_LOAD = createSlice({
     },
     resetLoad: (state) => {
       state = initialState;
+      return state;
     },
   },
 });
