@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addLoad } from "../redux/data";
 import { addSelect, clearSelect } from "../redux/selectedItems";
+import Navigation from "../components/Navigation";
 
 export default function Order() {
   const [search, setSearch] = useState("");
@@ -25,10 +26,8 @@ export default function Order() {
 
   return (
     <div className=" bg-[#FBF3EF] pb-5">
+      <Navigation/>
       {/* left side */}
-      <div className=" pt-5 pb-5">
-        <img src="/foodlogo.svg" alt="logo" />
-      </div>
       <div className=" grid grid-cols-2 gap-60 px-40">
         <div className=" flex flex-col gap-12">
           <div className=" bg-white shadow-lg rounded-lg px-4">

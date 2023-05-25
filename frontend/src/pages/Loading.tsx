@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Ticket from "../components/Ticket";
 import { addServe, removeLoad } from "../redux/data";
 import { useNavigate } from "react-router";
+import Navigation from "../components/Navigation";
 
 
 type selectedLoad = {
@@ -23,9 +24,7 @@ export default function Loading() {
 
   return (
     <div className=" bg-[#FBF3EF] pb-5">
-      <div className=" pt-5 pb-5">
-        <img src="/foodlogo.svg" alt="logo" />
-      </div>
+      <Navigation/>
       <div className=" grid grid-cols-2 gap-60 px-40">
         <div>
           <h1 className=" text-3xl font-bold mb-5">ORDERS</h1>
