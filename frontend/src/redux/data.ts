@@ -23,7 +23,7 @@ const data: data = {
   rejected: [],
 };
 
-const Data = createSlice({
+const DATA = createSlice({
   name: "slice",
   initialState: {
     data,
@@ -44,5 +44,5 @@ const Data = createSlice({
   },
 });
 
-export const { remove,add,proceed } = Data.actions;
-export default Data.reducer;
+export const { remove,add,proceed } = DATA.actions;
+export default DATA.reducer;
