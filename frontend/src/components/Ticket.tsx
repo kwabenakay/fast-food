@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { addReject, removeLoad } from "../redux/data";
 import { setLoad } from "../redux/selectedLoad";
 import { useLocation } from "react-router";
+import { setServe } from "../redux/selectedServe";
 type dataStruct = {
   id: number;
   name: string;
@@ -38,7 +39,12 @@ export default function Ticket(Prop: { tickets: dataStruct[] }) {
                 }
               }}
               onClick={() => {
-                dispatch(setLoad({ ticket: val, index: ind }));
+                 
+                dispatch(location.pathname === "/serving"
+                ? setServe({ ticket: val, index: ind })
+                : location.pathname === "/loading"
+                ? setLoad({ ticket: val, index: ind })
+                :setLoad({ ticket: val, index: ind }));
                 console.log(val);
               }}
             >
