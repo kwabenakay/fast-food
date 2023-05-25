@@ -4,6 +4,7 @@ import { LOGIN } from "./login";
 import { DATA } from "./data";
 import { SELECTED_ITEMS } from "./selectedItems";
 import { STOCK } from "./stock";
+import { SELECTED_LOAD } from "./selectedLoad";
 
 export default configureStore({
   reducer: {
@@ -12,5 +13,6 @@ export default configureStore({
     data: DATA.reducer,
     selected: SELECTED_ITEMS.reducer,
     stock: STOCK.reducer,
+    selectedLoad: SELECTED_LOAD.reducer,
   },
 });

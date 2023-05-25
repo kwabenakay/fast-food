@@ -179,23 +179,14 @@ const data: data = {
   ],
   rejected: [],
 };
-export function maketicket(ticket:{id:number, name:string, items:{ name: string; num: number; price:number }[]}){}
 export const DATA = createSlice({
   name: "slice",
   initialState: data,
   reducers: {
     removeLoad: (state, actions) => {
       //logic for removing and adding to rejected
-      let item = actions.payload;
-      let index = -1;
-      state.loading.filter((val, ind) => {
-        if (val.id === item.id) index = ind;
-        return val.id === item.id;
-      });
-      state.rejected.push({
-        stage: "loading",
-        data: state.loading.splice(index, 1),
-      });
+      let index = actions.payload;
+      state.loading.splice(index, 1);
       return state;
     },
     addLoad: (state, actions) => {
@@ -205,37 +196,23 @@ export const DATA = createSlice({
     },
     removeServe: (state, actions) => {
       //logic for removing and adding to rejected
-      let item = actions.payload;
-      let index = -1;
-      state.servings.filter((val, ind) => {
-        if (val.id === item.id) index = ind;
-        return val.id === item.id;
-      });
-      state.rejected.push({
-        stage: "serving",
-        data: state.servings.splice(index, 1),
-      });
+      let index = actions.payload;
+      state.servings.splice(index, 1);
+
       return state;
     },
     addServe: (state, actions) => {
       //logic for adding
-      state.servings.push(actions.payload.item);
+      state.servings.push(actions.payload);
       return state;
     },
-    proceed: (state, actions) => {
-      //logic for moving a request to the next stage
-      let item = actions.payload;
-      let index = -1;
-      state.loading.filter((val, ind) => {
-        if (val.id === item.id) index = ind;
-        return val.id === item.id;
-      });
-      state.servings.push(...state.loading.splice(index, 1));
-      return state;
+    addReject: (state, actions) => {
+      state.rejected.push(actions.payload);
+      console.log(JSON.parse(JSON.stringify(state.rejected)))
     },
   },
 });
 
-export const { removeLoad, addLoad, removeServe, addServe, proceed } =
+export const { removeLoad, addLoad, removeServe, addServe, addReject } =
   DATA.actions;
 export default DATA.reducer;
