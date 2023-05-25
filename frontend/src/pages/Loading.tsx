@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import Ticket from "../components/Ticket";
 import { addServe, removeLoad } from "../redux/data";
-import { useNavigate } from "react-router";
 import Navigation from "../components/Navigation";
+import { resetLoad } from "../redux/selectedLoad";
 
 
 type selectedLoad = {
@@ -20,7 +20,6 @@ export default function Loading() {
     (state: any) => state.selectedLoad
   );
   const dispatch = useDispatch()
-  const navigate = useNavigate()
 
   return (
     <div className=" bg-[#FBF3EF] pb-5">
@@ -52,7 +51,7 @@ export default function Loading() {
           onClick={()=>{
             dispatch(removeLoad(selectedLoad.index))
             dispatch(addServe(selectedLoad.ticket))
-            navigate('/serving')
+            dispatch(resetLoad())
           }}>
             DONE
           </button>

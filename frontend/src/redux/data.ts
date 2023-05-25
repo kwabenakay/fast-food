@@ -191,7 +191,7 @@ export const DATA = createSlice({
     },
     addLoad: (state, actions) => {
       //logic for adding
-      state.loading.push(actions.payload.item);
+      state.loading.push(actions.payload);
       return state;
     },
     removeServe: (state, actions) => {

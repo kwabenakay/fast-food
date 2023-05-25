@@ -7,9 +7,10 @@ import Navigation from "../components/Navigation";
 
 export default function Order() {
   const [search, setSearch] = useState("");
-  const [name, setName] = useState("");
+  const [name, setName] = useState("No name");
   const [filterItem, setFilterItem] = useState("");
   const [numItem, setNumItem] = useState(1);
+  const [activID, setActivID] = useState(getID());
   const selected: { name: string; num: number; price: number }[] = useSelector(
     (state: any) => state.selected
   );
@@ -20,21 +21,55 @@ export default function Order() {
 
   function total() {
     let total = 0;
-    selected.forEach((val) => (total += val.price));
+    selected.forEach((val) => (total += val.price * val.num));
     return total;
   }
-
+  let datetime = new Date();
+  console.log(
+    "Last Sync: " +
+      datetime.getDate() +
+      "/" +
+      (datetime.getMonth() + 1) +
+      "/" +
+      datetime.getFullYear() +
+      " @ " +
+      datetime.getHours() +
+      ":" +
+      datetime.getMinutes() +
+      ":" +
+      datetime.getSeconds()
+  );
+  function getID(): number {
+    let currentDate = new Date();
+    let newId =
+      currentDate.getDate() +
+      "" +
+      (currentDate.getMonth() + 1) +
+      "" +
+      currentDate.getFullYear() +
+      "" +
+      currentDate.getHours() +
+      "" +
+      currentDate.getMinutes() +
+      "" +
+      currentDate.getSeconds();
+    console.log(newId);
+    return Number(newId);
+  }
+  // console.log(getID());
   return (
     <div className=" bg-[#FBF3EF] pb-5">
-      <Navigation/>
+      <Navigation />
       {/* left side */}
       <div className=" grid grid-cols-2 gap-60 px-40">
         <div className=" flex flex-col gap-12">
           <div className=" bg-white shadow-lg rounded-lg px-4">
             <input
+              readOnly
               type="text"
               placeholder="id"
               className=" w-96 h-14 outline-none bg-transparent"
+              value={activID}
             />
           </div>
           <div className=" bg-white shadow-lg rounded-lg px-4">
@@ -101,10 +136,18 @@ export default function Order() {
             <button
               className=" bg-[#D6C07C] w-24 h-14 rounded-lg font-bold text-xl hover:bg-[#FFE594]"
               onClick={() => {
-                let temp = {...stock.filter((val) => val.name === filterItem)[0]};
-                temp.num=numItem
+                let temp = {
+                  ...stock.filter((val) => val.name === filterItem)[0],
+                };
+                temp.num = numItem;
                 console.log(temp);
-                dispatch(addSelect({name:temp.name,num:numItem,price:temp.price}));
+                dispatch(
+                  addSelect({
+                    name: temp.name,
+                    num: numItem,
+                    price: temp.price,
+                  })
+                );
               }}
             >
               ADD
@@ -134,23 +177,18 @@ export default function Order() {
           <button
             className=" bg-[#B29740] w-28 h-14 rounded-lg font-bold text-xl self-end hover:bg-[#FDD65C]"
             onClick={() => {
-              dispatch(
-                addLoad({
-                  id: 1000,
-                  name: name,
-                  amount: 20,
-                  items: selected,
-                })
-              );
+              let ticket = {
+                id: activID,
+                name: name,
+                amount: total(),
+                items: selected,
+              };
+              dispatch(addLoad(ticket));
 
               dispatch(clearSelect());
+              setActivID(getID());
 
-              console.log({
-                id: 1000,
-                name: "kofi",
-                amount: 20,
-                items: selected,
-              });
+              console.log(ticket);
             }}
           >
             Generate

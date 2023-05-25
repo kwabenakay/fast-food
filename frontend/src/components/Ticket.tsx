@@ -13,6 +13,7 @@ type dataStruct = {
 export default function Ticket(Prop: { tickets: dataStruct[] }) {
   const dispatch = useDispatch();
   const location = useLocation();
+  console.log(Prop.tickets)
   return (
     <div className=" flex flex-col items-center w-80 h-[556px] bg-black bg-opacity-10 rounded-lg overflow-y-auto pb-3">
       {Prop.tickets &&

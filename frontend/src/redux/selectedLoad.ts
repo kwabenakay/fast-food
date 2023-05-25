@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 type selectedLoad = {
-    ticket: {
+  ticket: {
     id: number;
     name: string;
     amount: number;
@@ -10,7 +10,7 @@ type selectedLoad = {
   index: number;
 };
 const initialState: selectedLoad = {
-    ticket: { id: 0, name: "", amount: 0, items: [] },
+  ticket: { id: 0, name: "", amount: 0, items: [] },
   index: -1,
 };
 
@@ -23,7 +23,10 @@ export const SELECTED_LOAD = createSlice({
       state.index = action.payload.index;
       return state;
     },
+    resetLoad: (state) => {
+      state = initialState;
+    },
   },
 });
-export const { setLoad } = SELECTED_LOAD.actions;
+export const { setLoad, resetLoad } = SELECTED_LOAD.actions;
 export default SELECTED_LOAD.reducer;
