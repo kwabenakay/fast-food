@@ -1,14 +1,12 @@
-import {useSelector, useDispatch} from 'react-redux'
-import './App.css'
-import { addTodo } from './redux/slice'
+import Loading from './pages/Loading'
+import Login from './pages/Login'
+import Order from './pages/Order'
 
 function App() {
-  const {todo} = useSelector((state:any)=>state)
-  const dispatch = useDispatch()
   return (
-    <>
-      
-    </>
+    <div className=' w-[1440px] mx-auto'>
+      <Loading/>
+    </div>
   )
 }
 
